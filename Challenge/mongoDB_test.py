@@ -2,14 +2,14 @@ from pymongo import MongoClient
 from datetime import datetime
 
 # [문제 1: 특정 장르의 책 찾기] - 문제 설명
-def insert_genre(db):    
+def insert_genre(db):
     books = {"title": "The Hobbit", "author": "J. R. R. Tolkien", "year": 1937, "genre" : "Fantasy"}
     
     db.books.insert_one(books)
 
 # [문제 1: 특정 장르의 책 찾기] - 쿼리 작성 목표
 def find_genre(db, name, genre):
-    collection = db[name]    
+    collection = db[name]
     query = {"genre": genre}
     
     for doc in collection.find(query, {"_id": 0, "title": 1, "author": 1}):
@@ -64,9 +64,9 @@ def user_action_update(db, name, user_id):
     
 if __name__ == "__main__":
     client = MongoClient('mongodb://localhost:27017/')
-    db = client.local  # 'local' 데이터베이스 사용      
+    db = client.local  # 'local' 데이터베이스 사용
     
-    # insert_genre(db) # [문제 1: 특정 장르의 책 찾기] - 문제 설명
+    # insert_genre(db) # [문제 1: 특정 장르의 책 찾기] - 문제 설명 호출
     # find_genre(db, "books", "Fantasy") # [문제 1: 특정 장르의 책 찾기] - 쿼리 작성 목표 호출
     
     # average_derector(db, "movies") # [문제 2: 감독별 평균 영화 평점 계산] 호출
